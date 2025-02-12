@@ -21,13 +21,12 @@ const updateDisplay = (value) => {
   localStorage.setItem("displayValue", value);
 };
 
-// Inicjalizacja: Odczytaj wartość z localStorage po załadowaniu strony
+
 window.addEventListener("load", () => {
   const savedValue = localStorage.getItem("displayValue");
   if (savedValue !== null) {
     updateDisplay(parseFloat(savedValue));
   } else {
-    // Ustaw wartość początkową z HTML, jeśli brak zapisanego stanu
     updateDisplay(parseFloat(display.textContent));
   }
 });
