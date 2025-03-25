@@ -1,3 +1,1 @@
-# Counter
-Counter
-https://ajparmp.github.io/Counter/
+https://michalpawlowski-mp.github.io/Counter/
