@@ -1,9 +1,10 @@
 # Simple Counter App
 
 Prosta aplikacja **licznika (Counter)** stworzona w czystym **HTML, CSS oraz JavaScript**.  
-Projekt pozwala na **zwiększanie, zmniejszanie oraz resetowanie wartości licznika**.
+Projekt pozwala na **zwiększanie, zmniejszanie o liczbę `X` oraz resetowanie wartości licznika**.
 
----
+**Gdzie:**
+- `X` – dostępne wartości: `0.5`, `1`, `5`, `10`, `100`
 
 ## 🛠️ Użyte technologie
 
@@ -27,15 +28,15 @@ Projekt pozwala na **zwiększanie, zmniejszanie oraz resetowanie wartości liczn
 
 1. Na stronie wyświetlana jest **aktualna wartość licznika** (domyślnie `0`).
 2. Użytkownik ma do dyspozycji **przyciski sterujące**:
-   - `+` – zwiększa liczbę o 1
-   - `-` – zmniejsza liczbę o 1
-   - `Reset` – ustawia wartość z powrotem na 0
+   - `+` – zwiększa liczbę o `X`
+   - `-` – zmniejsza liczbę o `X`
+   - `Reset` – ustawia wartość z powrotem na `0`
 3. JavaScript:
-   - przechowuje liczbę w zmiennej,
+   - przechowuje aktualną wartość licznika w zmiennej,
    - nasłuchuje kliknięć przycisków,
    - po kliknięciu:
-     - zmienia wartość zmiennej,
-     - aktualizuje tekst w HTML.
+     - modyfikuje wartość o wybraną liczbę `X`,
+     - aktualizuje wyświetlany wynik w HTML.
 
 ---
 
@@ -47,12 +48,7 @@ Projekt pozwala na **zwiększanie, zmniejszanie oraz resetowanie wartości liczn
 | Zmniejszenie wartości      | Odejmuje od licznika wybraną wartość `X` |
 | Reset licznika             | Ustawia wartość licznika na `0` |
 
-**Gdzie:**
-- `X` – dostępne wartości: `0.5`, `1`, `5`, `10`, `100`
-
-
 ---
-
 
 ### 🔗 Zobacz projekt
 
