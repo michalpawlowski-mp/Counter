@@ -41,11 +41,15 @@ Projekt pozwala na **zwiększanie, zmniejszanie oraz resetowanie wartości liczn
 
 ## 🎯 Sterowanie
 
-| Akcja            | Przycisk |
-| ---------------- | -------- |
-| Zwiększ wartość  | `+`      |
-| Zmniejsz wartość | `-`      |
-| Reset licznika   | `Reset`  |
+| Akcja                     | Opis |
+| -------------------------- | ---- |
+| Zwiększenie wartości       | Dodaje do licznika wybraną wartość `X` |
+| Zmniejszenie wartości      | Odejmuje od licznika wybraną wartość `X` |
+| Reset licznika             | Ustawia wartość licznika na `0` |
+
+**Gdzie:**
+- `X` – dostępne wartości: `0.5`, `1`, `5`, `10`, `100`
+
 
 ---
 
