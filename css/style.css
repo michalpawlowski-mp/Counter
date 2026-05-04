@@ -1,143 +1,210 @@
-:root {
-  color-scheme: light dark;
-
-  --accent: #00d4cc;
-  --danger: #e63939;
-  --bg-body: #f5f5f5;
-  --panel-bg: #ffffff;
-  --display-bg: #f8f8f8;
-  --text: #1a1a1a;
-  --text-muted: #555555;
-  --border: #00d4cc;
-  --glow: 0 0 25px rgba(0, 212, 204, 0.4);
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --accent: #00ffea;
-    --danger: #ff3366;
-    --bg-body: #0a0a0a;
-    --panel-bg: #161616;
-    --display-bg: #0f0f0f;
-    --text: #ffffff;
-    --text-muted: #aaaaaa;
-    --border: #00ffea;
-    --glow: 0 0 30px rgba(0, 255, 234, 0.5);
-    --shadow: 0 10px 40px rgba(0, 255, 234, 0.15);
-  }
-}
-
-* {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+:root {
+  --clr-bg: #0d0d0d;
+  --clr-panel: #141414;
+  --clr-border: #2a2a2a;
+  --clr-accent: #c8a84b;
+  --clr-accent-dim: #6b5520;
+  --clr-text: #f0ead8;
+  --clr-muted: #5a5547;
+  --clr-btn-bg: #1c1c1c;
+  --clr-btn-hover: #252525;
+  --clr-btn-active: #111;
+  --clr-plus: #4b8c5a;
+  --clr-plus-hover: #5aa86c;
+  --clr-minus: #8c3a3a;
+  --clr-minus-hover: #a84848;
+  --clr-reset: #2a2a2a;
+  --clr-reset-hover: #333;
 }
 
 body {
+  background-color: var(--clr-bg);
   min-height: 100vh;
-  background: var(--bg-body);
-  display: grid;
-  place-items: center;
-  font-family: "Black Ops One", system-ui;
-  color: var(--text);
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Black Ops One", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 #panel {
-  width: 100%;
-  max-width: 390px;
-  background: var(--panel-bg);
-  border: 4px solid var(--border);
-  border-radius: 28px;
-  padding: 28px 24px;
-  box-shadow: var(--shadow), var(--glow);
   position: relative;
+  z-index: 1;
+  background: var(--clr-panel);
+  border: 1px solid var(--clr-border);
+  border-radius: 4px;
+  padding: 2.5rem 2rem;
+  width: min(480px, 90vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  box-shadow:
+    0 0 0 1px #000,
+    0 8px 40px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+#panel::before,
+#panel::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--clr-accent);
+  border-style: solid;
+}
+
+#panel::before {
+  top: 8px;
+  left: 8px;
+  border-width: 1px 0 0 1px;
+}
+
+#panel::after {
+  bottom: 8px;
+  right: 8px;
+  border-width: 0 1px 1px 0;
 }
 
 #display {
-  height: 100px;
-  background: var(--display-bg);
-  border: 3px solid var(--border);
-  border-radius: 18px;
-  margin-bottom: 28px;
-  font-size: 4.8rem;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 24px;
-  letter-spacing: 3px;
-  color: var(--accent);
-  box-shadow: inset 0 6px 16px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
+  font-size: clamp(4rem, 14vw, 6rem);
+  color: var(--clr-accent);
+  letter-spacing: 0.06em;
+  text-align: center;
+  min-width: 220px;
+  min-height: 1.2em;
+  line-height: 1;
+  text-shadow:
+    0 0 30px rgba(200, 168, 75, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid var(--clr-border);
+  padding-bottom: 1.5rem;
+  width: 100%;
+  transition: color 0.15s ease;
+}
+
+#display.positive {
+  color: var(--clr-plus);
+  text-shadow:
+    0 0 30px rgba(75, 140, 90, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#display.negative {
+  color: var(--clr-minus);
+  text-shadow:
+    0 0 30px rgba(140, 58, 58, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  gap: 8px;
+  width: 100%;
 }
 
 button {
-  height: 68px;
-  font-family: "Black Ops One", system-ui;
-  font-size: 1.4rem;
-  color: var(--text);
-  background: var(--panel-bg);
-  border: 3px solid var(--border);
-  border-radius: 16px;
+  font-family: "Black Ops One", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--clr-text);
+  background: var(--clr-btn-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: 3px;
+  padding: 0.65rem 0.5rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition:
+    background 0.12s ease,
+    border-color 0.12s ease,
+    transform 0.08s ease,
+    color 0.12s ease;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 button:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--glow);
+  background: var(--clr-btn-hover);
 }
 
 button:active {
-  transform: translateY(2px) scale(0.95);
+  background: var(--clr-btn-active);
+  transform: scale(0.97);
 }
 
-button[data-number^="-"] {
-  border-color: var(--danger);
-  color: var(--danger);
+.positive {
+  border-color: #1f3327;
+  color: #6ab87c;
 }
 
-button[data-number^="-"]:hover {
-  box-shadow: 0 0 25px var(--danger);
+.positive:hover {
+  background: #162a1e;
+  border-color: var(--clr-plus);
+  color: var(--clr-plus-hover);
+}
+
+.minus {
+  border-color: #2d1a1a;
+  color: #a85c5c;
+}
+
+.minus:hover {
+  background: #2a1414;
+  border-color: var(--clr-minus);
+  color: var(--clr-minus-hover);
 }
 
 #reset {
-  grid-column: span 2;
-  height: 74px;
-  font-size: 1.55rem;
-  background: #2a0f0f;
-  border-color: var(--danger);
-  color: white;
-  margin-top: 10px;
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  background: var(--clr-reset);
+  border-color: var(--clr-muted);
+  color: var(--clr-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  padding: 0.7rem;
 }
 
 #reset:hover {
-  box-shadow: 0 0 30px var(--danger);
-  background: #3f1a1a;
+  background: var(--clr-reset-hover);
+  border-color: var(--clr-accent-dim);
+  color: var(--clr-accent);
 }
 
-@media (max-width: 440px) {
-  #panel {
-    padding: 22px 18px;
-    border-radius: 22px;
-  }
+#reset:active {
+  background: #1a1a1a;
+}
 
-  #display {
-    font-size: 3.8rem;
-    height: 86px;
+@media (max-width: 360px) {
+  #panel {
+    padding: 2rem 1.25rem;
   }
 
   button {
-    height: 62px;
-    font-size: 1.3rem;
+    font-size: 0.75rem;
+    padding: 0.55rem 0.4rem;
   }
 }

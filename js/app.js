@@ -13,6 +13,9 @@ const updateDisplay = (value) => {
   currentValue = value;
   display.textContent = Number.isInteger(value) ? value : value.toFixed(1);
 
+  display.classList.toggle("positive", value > 0);
+  display.classList.toggle("negative", value < 0);
+
   localStorage.setItem("displayValue", value);
 };
 
@@ -26,8 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 buttons.forEach((btn) =>
   btn.addEventListener("click", () =>
-    updateDisplay(currentValue + Number(btn.dataset.number))
-  )
+    updateDisplay(currentValue + Number(btn.dataset.number)),
+  ),
 );
 
 reset.addEventListener("click", () => updateDisplay(0));
